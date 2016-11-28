@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+	<h2>Zarządzanie materiałami</h2>
+
+	<a href="{{path('homepage')}}"> Strona główna</a>
+
+	<p>
+		<a href="{{path('material_grupa')}}">Grupy</a>
+		<a href="{{path('material_material')}}">Materiały</a>
+		<a href="{{path('material_jm')}}">Jm</a>
+	</p>
+	<p>
+		<a href="{{path('material_material_add')}}">Dodawanie materiału</a>
+		<a href="{{path('material_material_edit')}}">Edycja materiału</a>
+	</p>
+	<hr>
+	{% include 'PjplMaterialBundle::material.html.twig' %}
+{% endblock %}

@@ -1,0 +1,36 @@
+material_homepage:
+    path:     /
+    defaults: { _controller: PjplMaterialBundle:Default:index }
+
+material_grupa:
+    path:     grupa/
+    defaults: { _controller: PjplMaterialBundle:Grupa:index }
+material_grupa_add:
+    path:     grupa/add/
+    defaults: { _controller: PjplMaterialBundle:Grupa:add }
+material_grupa_edit:
+    path:     grupa/edit/
+    defaults: { _controller: PjplMaterialBundle:Grupa:edit }
+material_grupa_change_parent:
+    path:     grupa/change-parent/
+    defaults: { _controller: PjplMaterialBundle:Grupa:changeParent }
+
+material_jm:
+    path:     jm/
+    defaults: { _controller: PjplMaterialBundle:JednostkaMiary:index }
+material_jm_add:
+    path:     jm/add/
+    defaults: { _controller: PjplMaterialBundle:JednostkaMiary:add }
+material_jm_edit:
+    path:     jm/edit/
+    defaults: { _controller: PjplMaterialBundle:JednostkaMiary:edit }
+
+material_material:
+    path:     material/
+    defaults: { _controller: PjplMaterialBundle:Material:index }
+material_material_add:
+    path:     material/add/
+    defaults: { _controller: PjplMaterialBundle:Material:add }
+material_material_edit:
+    path:     material/edit/
+    defaults: { _controller: PjplMaterialBundle:Material:edit }

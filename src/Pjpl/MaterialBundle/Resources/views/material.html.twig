@@ -1,0 +1,20 @@
+<table>
+	<caption>Materiały</caption>
+	<thead>
+		<tr>
+			<th>
+				Nazwa
+			</th>
+			<th>
+				Kod
+			<th>
+		</tr>
+	</thead>
+	<tbody>
+		 {% for material in material_array %}
+        <tr>
+					<td>{{ material.name }}</td>
+				</tr>
+    {% endfor %}
+	</tbody>
+</table>
