@@ -15,7 +15,7 @@ class JednostkaMiaryController extends Controller{
 		$return = $this->redirectToRoute('material_jm');
 		$jednostkaMiary = new JednostkaMiary();
 
-		$form = $this->createForm(new JednostkaMiaryForm(), $jednostkaMiary);
+		$form = $this->createForm(JednostkaMiaryForm::class, $jednostkaMiary);
 		$form->handleRequest($request);
 
 		try{
@@ -54,7 +54,7 @@ class JednostkaMiaryController extends Controller{
 		$jmRepo = $em->getRepository('PjplMaterialBundle:JednostkaMiary');
 		$jmEntity = $jmRepo->find($request->get('id'));
 
-		$form = $this->createForm(new JednostkaMiaryForm(), $jmEntity);
+		$form = $this->createForm(JednostkaMiaryForm::class, $jmEntity);
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && !$form->get('cancel')->isClicked() ){

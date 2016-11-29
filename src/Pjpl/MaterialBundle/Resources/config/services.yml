@@ -1,7 +1,4 @@
 services:
-    material.zestawienie:
-        class: Pjpl\MaterialBundle\Services\ZestawienieList
-        arguments: [@service_container]
     material.materialy:
         class: Pjpl\MaterialBundle\Services\MaterialList
         arguments: [@service_container]

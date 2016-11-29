@@ -29,31 +29,62 @@ class Material{
 	 * @ORM\JoinColumn(name="jednostka_miary_id", referencedColumnName="id", nullable=false)
 	 */
 	protected $jednostka_miary;
+	/**
+	 * @ORM\ManyToOne(targetEntity="GrupaMaterialow", inversedBy="material")
+	 * @ORM\JoinColumn(name="grupa_materialow_id", referencedColumnName="id", nullable=false)
+	 */
+	protected $grupa_materialow;
 
 	public function __toString() {
 		return $this->getNazwa().' ['.$this->getKod().']';
 	}
-
+	/**
+	 *
+	 * @return int
+	 */
 	public function getId(){
 		return $this->id;
 	}
-
+	/**
+	 * @param string $kod
+	 */
 	public function setKod($kod){
 		$this->kod = $kod;
 	}
+	/**
+	 * @return string
+	 */
 	public function getKod(){
 		return $this->kod;
 	}
+	/**
+	 * @param string $nazwa
+	 */
 	public function setNazwa($nazwa){
 		$this->nazwa = $nazwa;
 	}
+	/**
+	 * @return string
+	 */
 	public function getNazwa(){
 		return $this->nazwa;
 	}
+	/**
+	 * @return GrupaMaterialow
+	 */
+	public function getGrupaMaterialow(){
+		return $this->grupa_materialow;
+	}
+	public function setGrupaMaterialow(GrupaMaterialow $grupaMamerialow){
+		$this->grupa_materialow = $grupaMamerialow;
+	}
+	/**
+	 * @return JednostkaMiary
+	 */
 	public function getJednostkaMiary(){
 		return $this->jednostka_miary;
 	}
-	public function setJednostkaMiary($jednostkaMiary){
+	public function setJednostkaMiary(JednostkaMiary $jednostkaMiary){
 		$this->jednostka_miary = $jednostkaMiary;
 	}
 

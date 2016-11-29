@@ -17,7 +17,7 @@ class MaterialController extends Controller{
 
 		$materialEntity = new Material();
 
-		$form = $this->createForm(new MaterialForm(), $materialEntity);
+		$form = $this->createForm(MaterialForm::class, $materialEntity);
 		$form->handleRequest($request);
 
 		try{
@@ -55,7 +55,7 @@ class MaterialController extends Controller{
 		$jmRepo = $em->getRepository('PjplMaterialBundle:Material');
 		$materialEntity = $jmRepo->find($request->get('id'));
 
-		$form = $this->createForm(new MaterialForm(), $materialEntity);
+		$form = $this->createForm(MaterialForm::class, $materialEntity);
 		$form->handleRequest($request);
 
 		try{

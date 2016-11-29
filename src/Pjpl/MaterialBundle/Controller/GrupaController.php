@@ -19,7 +19,7 @@ class GrupaController extends Controller
 		$return  = $this->redirectToRoute('material_grupa');
 		$grupaMaterialow = new GrupaMaterialow();
 
-		$form = $this->createForm(new GrupaMaterialowForm(), $grupaMaterialow);
+		$form = $this->createForm(GrupaMaterialowForm::class, $grupaMaterialow);
 		$form->handleRequest($request);
 
 		try{
@@ -59,7 +59,7 @@ class GrupaController extends Controller
 		$grupaRepo = $em->getRepository('PjplMaterialBundle:GrupaMaterialow');
 		$grupaEntity = $grupaRepo->find($request->get('id'));
 
-		$form = $this->createForm(new GrupaMaterialowForm(), $grupaEntity);
+		$form = $this->createForm(GrupaMaterialowForm::class, $grupaEntity);
 		$form->handleRequest($request);
 
 		try{
@@ -95,7 +95,7 @@ class GrupaController extends Controller
 		$grupaRepo = $em->getRepository('PjplMaterialBundle:GrupaMaterialow');
 		$grupaEntity = $grupaRepo->find($request->get('id'));
 
-		$form = $this->createForm(new GrupaMaterialowParentForm(), $grupaEntity);
+		$form = $this->createForm(GrupaMaterialowParentForm::class, $grupaEntity);
 		$form->handleRequest($request);
 
 		try{

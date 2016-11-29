@@ -17,7 +17,11 @@ class MaterialForm extends AbstractType{
 				])
 				->add('jednostka_miary', EntityType::class, [
 						'class' => 'Pjpl\MaterialBundle\Entity\JednostkaMiary',
-						'placeholder' => 'Wybierz jm'
+						'placeholder' => 'Wybierz jednostkę miary'
+				])
+				->add('grupa_materialow', EntityType::class, [
+						'class' => 'Pjpl\MaterialBundle\Entity\GrupaMaterialow',
+						'placeholder' => 'Wybierz grupę'
 				])
 				->add('zatwierdz', SubmitType::class,[
 						'label' => 'Zatwierdź'

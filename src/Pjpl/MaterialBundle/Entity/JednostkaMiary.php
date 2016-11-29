@@ -30,12 +30,12 @@ class JednostkaMiary {
 	 */
 	protected $material;
 
-	public function __toString() {
-		return $this->nazwa.' ['.$this->skrot.']';
-	}
 
 	public function __construct() {
 		$this->material = new ArrayCollection();
+	}
+	public function __toString() {
+		return $this->nazwa.' ['.$this->skrot.']';
 	}
 	public function getId(){
 		return $this->id;

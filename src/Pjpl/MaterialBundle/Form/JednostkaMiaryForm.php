@@ -7,9 +7,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class JednostkaMiaryForm extends AbstractType{
 	public function buildForm(\Symfony\Component\Form\FormBuilderInterface $builder, array $options) {
 		$builder
-				->setMethod('post')
 				->add('nazwa', TextType::class,[
-					'label'=> 'Nazwa '
+					'label'=> 'Nazwa'
 				])
 				->add('skrot', TextType::class,[
 					'label'=> 'Skrót'

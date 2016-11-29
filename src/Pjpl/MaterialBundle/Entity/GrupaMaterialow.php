@@ -1,9 +1,12 @@
 <?php
 namespace Pjpl\MaterialBundle\Entity;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use Pjpl\MaterialBundle\Entity\Material;
+use Pjpl\MaterialBundle\Entity\GrupaMaterialow;
 
 /**
  * @ORM\Entity
@@ -32,25 +35,60 @@ class GrupaMaterialow {
 	 * @ORM\JoinColumn(name="id", referencedColumnName="parent_id")
 	 */
 	protected $children;
+	/**
+	 * @ORM\OneToMany(targetEntity="Material", mappedBy="grupa_materialow")
+	 */
+	protected $material;
 
 	public function __construct() {
 		$this->children = new ArrayCollection();
+		$this->material = new ArrayCollection();
 	}
 	public function __toString() {
 		return $this->getNazwa().( $this->getParent() ? ' [ należy do grupy : '.$this->getParent()->getNazwa().']' : '');
 	}
-
+	/**
+	 * @return int
+	 */
 	public function getId(){
 		return $this->id;
 	}
+	/**
+	 * @return string
+	 */
 	public function getNazwa(){
 		return $this->nazwa;
 	}
+	/**
+	 * @param string $nazwa
+	 * @return GrupaMaterialow
+	 */
 	public function setNazwa($nazwa){
 		$this->nazwa = $nazwa;
+		return $this;
 	}
+	/**
+	 * @param Material $material
+	 * @return GrupaMaterialow
+	 */
+	public function addMaterial(Material $material){
+		$material->setGrupaMaterialow($this);
+		$this->material->add($material);
+		return $this;
+	}
+	/**
+	 * @return Material
+	 */
+	public function getMaterial(){
+		return $this->material;
+	}
+	/**
+	 * @param GrupaMaterialow $parent
+	 * @return GrupaMaterialow
+	 */
 	public function setParent(GrupaMaterialow $parent = null){
 		$this->parent = $parent;
+		return $this;
 	}
 	/**
 	 * @return GrupaMaterialow
@@ -58,15 +96,25 @@ class GrupaMaterialow {
 	public function getParent(){
 		return $this->parent;
 	}
+	/**
+	 * @param GrupaMaterialow $child
+	 * @return GrupaMaterialow
+	 */
 	public function addChild(GrupaMaterialow $child = null){
 		$child->setParent($this);
 		$this->children->add($child);
+		return $this;
 	}
+	/**
+	 * @param array $children
+	 * @return GrupaMaterialow
+	 */
 	public function setChildren(array $children){
 		$this->children = $children;
 		foreach ($children as $child){
 			$child->setParent($this);
 		}
+		return $this;
 	}
 	/**
 	 * @return PersistentCollection
@@ -75,9 +123,11 @@ class GrupaMaterialow {
 		return $this->children;
 	}
 	/**
-	 * @param \Pjpl\MaterialBundle\Entity\GrupaMaterialow $child
+	 * @param GrupaMaterialow $child
+	 * @return GrupaMaterialow
 	 */
-	public function removeChild(\Pjpl\MaterialBundle\Entity\GrupaMaterialow $child){
+	public function removeChild(GrupaMaterialow $child){
 		$this->children->removeElement($child);
+		return $this;
 	}
 }
