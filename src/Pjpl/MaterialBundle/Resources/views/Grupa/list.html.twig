@@ -1,0 +1,29 @@
+{% extends 'PjplMaterialBundle::base.html.twig' %}
+
+{% block body %}
+	<h3>Edycja grupy materiałowej</h3>
+	<a href="{{path('material_jm')}}" class="button"> Zarządzanie grupą materiałową</a>
+	<hr>
+
+<table>
+	<caption>Lista grup materiałowych</caption>
+	<thead>
+		<tr>
+			<th>
+				Nazwa
+			</th>
+			<th>
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		 {% for grupa in grupa_array %}
+        <tr>
+					<td>{{ grupa.nazwa }}</td>
+					<td><a href="{{ path('material_grupa_edit', {'id' : grupa.id}) }}" class="button">Edytuj</a></td>
+					<td><a href="{{ path('material_grupa_change_parent', {'id' : grupa.id}) }}" class="button">Zmień grupę nadrzędną</a></td>
+				</tr>
+    {% endfor %}
+	</tbody>
+</table>
+{% endblock %}

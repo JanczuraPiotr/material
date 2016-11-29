@@ -1,0 +1,28 @@
+.flash-notice{
+  background-color:#FCC;
+  color:#A00;
+  border:#f00 solid 1px;
+	list-style: none;
+	margin: 1px;
+	padding: 1px;
+}
+a.button{
+	text-decoration: none;
+  background-color: #5eb5e0;
+  color:  #0000F0;
+  border: #08C solid 1px;
+	list-style: none;
+	margin: 1px;
+	padding: 1px;
+}
+a.button:hover{
+	color:white;
+	background-color: #0080ff;
+	text-decoration:none;
+	cursor:pointer;
+ }
+ a.button.disable{
+	 opacity: 0.6;
+	 pointer-events: none;
+   cursor: default;
+ }

@@ -1,13 +1,19 @@
-{% extends 'base.html.twig' %}
+{% extends 'PjplMaterialBundle::base.html.twig' %}
 
 {% block body %}
 	<h3>Dodawanie materiału</h3>
 {#	<a href="{{path('homepage')}}"> Strona główna</a>#}
-	<a href="{{path('material_material')}}"> Zarządzanie materiałami</a>
+	<a href="{{path('material_material')}}" class="button"> Zarządzanie materiałami</a>
 	<hr>
-	{#
+
+	{% for flash_message in app.session.flashBag.get('info') %}
+			<div class="flash-notice">
+					{{ flash_message }}
+			</div>
+	{% endfor %}
+
 	{{ form_start(form) }}
 	{{ form_widget(form) }}
 	{{ form_end(form) }}
-#}
+
 {% endblock %}

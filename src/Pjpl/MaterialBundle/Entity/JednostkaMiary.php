@@ -3,7 +3,7 @@ namespace Pjpl\MaterialBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Pjpl\MaterialBundle\Entity\Material;
 /**
  * @ORM\Entity
  * @ORM\Table(name="jednostka_miary")
@@ -30,8 +30,15 @@ class JednostkaMiary {
 	 */
 	protected $material;
 
+	public function __toString() {
+		return $this->nazwa.' ['.$this->skrot.']';
+	}
+
 	public function __construct() {
 		$this->material = new ArrayCollection();
+	}
+	public function getId(){
+		return $this->id;
 	}
 	public function getNazwa(){
 		return $this->nazwa;
@@ -48,16 +55,13 @@ class JednostkaMiary {
 	public function getMaterial(){
 		return $this->material;
 	}
+	/**
+	 * @param Material $material
+	 * @return JednostkaMiary
+	 */
 	public function addMaterial(Material $material){
 		$material->setJednostkaMiary($this);
 		$this->material->add($material);
-	}
-
-	public function setMaterial($material){
-		$this->material = new ArrayCollection();
-		foreach ($material as $value) {
-			$value->setJednostkaMiary($this);
-			$this->material->add($value);
-		}
+		return $this;
 	}
 }

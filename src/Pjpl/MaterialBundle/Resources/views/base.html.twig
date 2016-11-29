@@ -1,4 +1,9 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link href="{{ asset('bundles/pjplmaterial/css/main.css') }}" type="text/css" rel="stylesheet" />
+	<link href="{{ asset('bundles/pjplmaterial/css/menu.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
 
 
 {% block body %}

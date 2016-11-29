@@ -8,11 +8,14 @@ material_grupa:
 material_grupa_add:
     path:     grupa/add/
     defaults: { _controller: PjplMaterialBundle:Grupa:add }
+material_grupa_list:
+    path:     grupa/list/
+    defaults: { _controller: PjplMaterialBundle:Grupa:list }
 material_grupa_edit:
-    path:     grupa/edit/
+    path:     grupa/edit/{id}
     defaults: { _controller: PjplMaterialBundle:Grupa:edit }
 material_grupa_change_parent:
-    path:     grupa/change-parent/
+    path:     grupa/change-parent/{id}
     defaults: { _controller: PjplMaterialBundle:Grupa:changeParent }
 
 material_jm:
@@ -21,8 +24,11 @@ material_jm:
 material_jm_add:
     path:     jm/add/
     defaults: { _controller: PjplMaterialBundle:JednostkaMiary:add }
+material_jm_list:
+    path:     jm/list/
+    defaults: { _controller: PjplMaterialBundle:JednostkaMiary:list }
 material_jm_edit:
-    path:     jm/edit/
+    path:     jm/edit/{id}
     defaults: { _controller: PjplMaterialBundle:JednostkaMiary:edit }
 
 material_material:
@@ -31,6 +37,9 @@ material_material:
 material_material_add:
     path:     material/add/
     defaults: { _controller: PjplMaterialBundle:Material:add }
+material_material_list:
+    path:     material/list/
+    defaults: { _controller: PjplMaterialBundle:Material:list }
 material_material_edit:
-    path:     material/edit/
+    path:     material/edit/{id}
     defaults: { _controller: PjplMaterialBundle:Material:edit }

@@ -1,9 +1,7 @@
 <?php
 namespace Pjpl\MaterialBundle\Entity;
-use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
-use Pjpl\MaterialBundle\Entity\JednostkaMiary;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity
  * @ORM\Table(name="material")
@@ -27,10 +25,14 @@ class Material{
 	 */
 	protected $nazwa;
 	/**
-   * @ORM\ManyToOne(targetEntity="JednostkaMiary", inversedBy="material")
-   * @ORM\JoinColumn(name="jednostka_miary_id", referencedColumnName="id", nullable=false)
+	 * @ORM\ManyToOne(targetEntity="JednostkaMiary", inversedBy="material")
+	 * @ORM\JoinColumn(name="jednostka_miary_id", referencedColumnName="id", nullable=false)
 	 */
-	protected $jm;
+	protected $jednostka_miary;
+
+	public function __toString() {
+		return $this->getNazwa().' ['.$this->getKod().']';
+	}
 
 	public function getId(){
 		return $this->id;
@@ -47,6 +49,12 @@ class Material{
 	}
 	public function getNazwa(){
 		return $this->nazwa;
+	}
+	public function getJednostkaMiary(){
+		return $this->jednostka_miary;
+	}
+	public function setJednostkaMiary($jednostkaMiary){
+		$this->jednostka_miary = $jednostkaMiary;
 	}
 
 }

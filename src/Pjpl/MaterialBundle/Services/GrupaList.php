@@ -5,7 +5,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Zestawieni grup materiałów
  */
-class GrupalList {
+class GrupaList {
 	/**
 	 * @var ContainerInterface
 	 */

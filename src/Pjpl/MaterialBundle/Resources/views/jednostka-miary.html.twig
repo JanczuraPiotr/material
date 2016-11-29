@@ -11,9 +11,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		 {% for material in material_array %}
+		 {% for jm in jm_array %}
         <tr>
-					<td>{{ material.name }}</td>
+					<td>{{ jm.nazwa }}</td>
+					<td>{{ jm.skrot }}</td>
 				</tr>
     {% endfor %}
 	</tbody>

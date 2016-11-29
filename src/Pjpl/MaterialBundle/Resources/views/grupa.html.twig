@@ -11,9 +11,10 @@
 		</tr>
 	</thead>
 	<tbody>
-		 {% for material in material_array %}
+		 {% for grupa in grupa_array %}
         <tr>
-					<td>{{ material.name }}</td>
+					<td>{{ grupa.nazwa }}</td>
+					<td>{{ grupa.parent }}</td>
 				</tr>
     {% endfor %}
 	</tbody>

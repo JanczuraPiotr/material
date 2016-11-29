@@ -1,0 +1,39 @@
+{% extends 'PjplMaterialBundle::base.html.twig' %}
+
+{% block body %}
+	<h3>Edycja materiału</h3>
+	<a href="{{path('material_material')}}" class="button"> Zarządzanie materiałami</a>
+	<hr>
+
+	{% for flash_message in app.session.flashBag.get('info') %}
+			<div class="flash-notice">
+					{{ flash_message }}
+			</div>
+	{% endfor %}
+
+	<table>
+		<caption>Lista materiałów</caption>
+		<thead>
+			<tr>
+				<th>
+					Nazwa
+				</th>
+				<th>
+					Kod
+				</th>
+				<th>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			 {% for material in material_array %}
+					<tr>
+						<td>{{ material.nazwa }}</td>
+						<td>{{ material.kod }}</td>
+						<td><a href="{{ path('material_material_edit', {'id' : material.id}) }}" class="button">Edytuj</a></td>
+					</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+{% endblock %}

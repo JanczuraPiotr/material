@@ -4,7 +4,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\PersistentCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-	
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="grupa_materialow")
@@ -19,9 +19,9 @@ class GrupaMaterialow {
 	protected $id;
 	/**
 	 * @Assert\NotBlank()
-	 * @ORM\Column(type="string", name="name", unique=true, length=64, nullable=false)
+	 * @ORM\Column(type="string", name="nazwa", unique=true, length=64, nullable=false)
 	 */
-	protected $name;
+	protected $nazwa;
 	/**
 	 * @ORM\ManyToOne(targetEntity="GrupaMaterialow", inversedBy="children")
 	 * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
@@ -36,23 +36,29 @@ class GrupaMaterialow {
 	public function __construct() {
 		$this->children = new ArrayCollection();
 	}
+	public function __toString() {
+		return $this->getNazwa().( $this->getParent() ? ' [ należy do grupy : '.$this->getParent()->getNazwa().']' : '');
+	}
 
 	public function getId(){
 		return $this->id;
 	}
-	public function getName(){
-		return $this->name;
+	public function getNazwa(){
+		return $this->nazwa;
 	}
-	public function setName($name){
-		$this->name = $name;
+	public function setNazwa($nazwa){
+		$this->nazwa = $nazwa;
 	}
-	public function setParent(GrupaMaterialow $parent){
+	public function setParent(GrupaMaterialow $parent = null){
 		$this->parent = $parent;
 	}
+	/**
+	 * @return GrupaMaterialow
+	 */
 	public function getParent(){
 		return $this->parent;
 	}
-	public function addChild(GrupaMaterialow $child){
+	public function addChild(GrupaMaterialow $child = null){
 		$child->setParent($this);
 		$this->children->add($child);
 	}
@@ -67,5 +73,11 @@ class GrupaMaterialow {
 	 */
 	public function getChildren(){
 		return $this->children;
+	}
+	/**
+	 * @param \Pjpl\MaterialBundle\Entity\GrupaMaterialow $child
+	 */
+	public function removeChild(\Pjpl\MaterialBundle\Entity\GrupaMaterialow $child){
+		$this->children->removeElement($child);
 	}
 }

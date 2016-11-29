@@ -20,7 +20,7 @@ class MaterialList {
 		$this->em = $this->container->get('doctrine')->getManager();
 	}
 	public function getArray(){
-		$materialRepo = $this->em->getRepository('PjplMaterialBundle:Materialy');
+		$materialRepo = $this->em->getRepository('PjplMaterialBundle:Material');
 		$arr = $materialRepo->findAll();
 		return $arr;
 	}

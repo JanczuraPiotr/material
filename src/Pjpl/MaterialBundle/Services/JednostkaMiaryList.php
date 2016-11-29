@@ -23,8 +23,8 @@ class JednostkaMiaryList {
 		$this->em = $this->container->get('doctrine')->getManager();
 	}
 	public function getArray(){
-		$materialRepo = $this->em->getRepository('PjplMaterialBundle:JednostkaMiary');
-		$arr = $materialRepo->findAll();
+		$jmRepo = $this->em->getRepository('PjplMaterialBundle:JednostkaMiary');
+		$arr = $jmRepo->findAll();
 		return $arr;
 	}
 }
