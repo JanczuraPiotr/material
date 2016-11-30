@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block jumbotron %}
 	<h1>Strona główna</h1>
-	<a href="{{path('material_homepage')}}">Zarządzanie materiałami</a>
-	<hr>
+{% endblock %}
+
+{% block navi %}
+	<a href="{{path('material_homepage')}}" class="btn btn-default">Zarządzanie materiałami</a>
 {% endblock %}

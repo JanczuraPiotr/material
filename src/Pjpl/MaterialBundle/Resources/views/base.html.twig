@@ -1,22 +1,13 @@
 {% extends 'base.html.twig' %}
-
 {% block stylesheets %}
+	{{ parent() }}
 	<link href="{{ asset('bundles/pjplmaterial/css/main.css') }}" type="text/css" rel="stylesheet" />
-	<link href="{{ asset('bundles/pjplmaterial/css/menu.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
 
-
-{% block body %}
-
-	<h2>Zarządzanie materiałami</h2>
-
-	<a href="{{path('homepage')}}" class="button"> Strona główna</a>
-
+{% block navi %}
 	<p>
-		<a href="{{path('material_grupa')}}" class="button">Grupy</a>
-		<a href="{{path('material_material')}}" class="button">Materiały</a>
-		<a href="{{path('material_jm')}}" class="button">Jednostki Miary</a>
+		<a href="{{path('material_grupa')}}" class="btn btn-default">Grupy</a>
+		<a href="{{path('material_material')}}" class="btn btn-default">Materiały</a>
+		<a href="{{path('material_jm')}}" class="btn btn-default">Jednostki Miary</a>
 	</p>
-	<hr>
-	{% include 'PjplMaterialBundle::zestawienie.html.twig' %}
 {% endblock %}

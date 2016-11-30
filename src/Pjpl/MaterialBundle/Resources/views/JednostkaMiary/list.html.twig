@@ -1,32 +1,33 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'PjplMaterialBundle:JednostkaMiary:base.html.twig' %}
+
+{% block navi %}
+	<h3>Edycja jednostki miary</h3>
+	<a href="{{path('material_jm')}}" class="btn btn-default"> Zarządzanie jednostkami miary</a>
+{% endblock %}
 
 {% block body %}
-	<h3>Edycja jednostki miary</h3>
-	<a href="{{path('material_jm')}}" class="button"> Zarządzanie jednostkami miary</a>
-	<hr>
-
-<table>
-	<caption>Lista jednostek miary</caption>
-	<thead>
-		<tr>
-			<th>
-				Nazwa
-			</th>
-			<th>
-				Skrót
-			</th>
-			<th>
-			</th>
-		</tr>
-	</thead>
-	<tbody>
-		 {% for jm in jm_array %}
-        <tr>
-					<td>{{ jm.nazwa }}</td>
-					<td>{{ jm.skrot }}</td>
-					<td><a href="{{ path('material_jm_edit', {'id' : jm.id}) }}" class="button">Edytuj</a></td>
-				</tr>
-    {% endfor %}
-	</tbody>
-</table>
+	<table class="table">
+		<caption>Lista jednostek miary</caption>
+		<thead>
+			<tr>
+				<th>
+					Nazwa
+				</th>
+				<th>
+					Skrót
+				</th>
+				<th>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			 {% for jm in jm_array %}
+					<tr>
+						<td>{{ jm.nazwa }}</td>
+						<td>{{ jm.skrot }}</td>
+						<td><a href="{{ path('material_jm_edit', {'id' : jm.id}) }}" class="btn btn-primary">Edytuj</a></td>
+					</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}

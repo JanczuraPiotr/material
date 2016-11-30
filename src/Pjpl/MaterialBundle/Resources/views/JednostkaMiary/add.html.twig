@@ -1,19 +1,33 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'PjplMaterialBundle:JednostkaMiary:base.html.twig' %}
+
+
+{% block navi %}
+	<h3>Dodawanie jednostki miary</h3>
+	<a href="{{path('material_jm')}}" class="btn btn-default"> Zarządzanie jednostkami miary</a>
+{% endblock %}
 
 {% block body %}
-	<h3>Dodawanie jednostki miary</h3>
-{#	<a href="{{path('homepage')}}"> Strona główna</a>#}
-	<a href="{{path('material_jm')}}" class="button"> Zarządzanie jednostkami miary</a>
-	<hr>
 
-	{% for flash_message in app.session.flashBag.get('info') %}
-			<div class="flash-notice">
-					{{ flash_message }}
-			</div>
-	{% endfor %}
-
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<div>
+		<div class="panel-body">
+		{{ form_start(form,  { 'attr': {'class': 'form '} }) }}
+		{{ form_errors(form) }}
+		<div class="form-group">
+			{{ form_label(form.nazwa)}}
+			{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.skrot)}}
+			{{ form_errors(form.skrot,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.skrot,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
+			{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
+		</div>
+		{{ form_end(form) }}
+		</div>
+	</div>
 
 {% endblock %}

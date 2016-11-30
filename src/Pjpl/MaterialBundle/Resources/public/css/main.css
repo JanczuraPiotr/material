@@ -1,3 +1,6 @@
+table > caption{
+	font-size: 30px;
+}
 .flash-notice{
   background-color:#FCC;
   color:#A00;

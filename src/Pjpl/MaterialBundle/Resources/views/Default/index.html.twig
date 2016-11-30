@@ -1,27 +1,12 @@
 {% extends 'PjplMaterialBundle::base.html.twig' %}
 
-
-{% block body %}
-
+{% block jumbotron %}
 	<h2>Zarządzanie materiałami</h2>
+	<a href="{{path('homepage')}}" class="btn btn-default"> Strona główna</a>
+{% endblock %}
 
-	<a href="{{path('homepage')}}" class="button"> Strona główna</a>
-
-	<p>
-		<a href="{{path('material_grupa')}}" class="button">Grupy</a>
-		<a href="{{path('material_material')}}" class="button">Materiały</a>
-		<a href="{{path('material_jm')}}" class="button">Jednostki Miary</a>
-	</p>
-	<hr>
-	{#
-	<p>
-		<a href="{{path('material_grupa_add')}}">Dodawanie grupy materiałów</a>
-		<a href="{{path('material_grupa_edit')}}">Edycja grupy materiałów</a>
-		<a href="{{path('material_grupa_change_parent')}}">Edycja organizacji grupy materiałów</a>
-		<a href="{{path('material_material_add')}}">Dodawanie materiału</a>
-		<a href="{{path('material_material_edit')}}">Edycja materiału</a>
-		<a href="{{path('material_jm_add')}}">Dodawanie jednostki miary</a>
-		<a href="{{path('material_jm_edit')}}">Edycja jednostki miary</a>
-	</p>
-	#}
+{% block navi %}
+		<a href="{{path('material_grupa')}}" class="btn btn-default">Grupy</a>
+		<a href="{{path('material_material')}}" class="btn btn-default">Materiały</a>
+		<a href="{{path('material_jm')}}" class="btn btn-default">Jednostki Miary</a>
 {% endblock %}

@@ -1,27 +1,17 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'PjplMaterialBundle:Grupa:base.html.twig' %}
 
+{% block navi %}
+	<p>
+		<a href="{{path('material_grupa')}}" class="btn btn-primary disabled">Grupy</a>
+		<a href="{{path('material_material')}}" class="btn btn-primary">Materiały</a>
+		<a href="{{path('material_jm')}}" class="btn btn-primary">Jednostki Miary</a>
+	</p>
+	<p>
+		<a href="{{path('material_grupa_add')}}" class="btn btn-primary">Dodawanie grupy materiałów</a>
+		<a href="{{path('material_grupa_list')}}" class="btn btn-primary">Edycja grupy materiałów</a>
+	</p>
+{% endblock %}
 
 {% block body %}
-
-	<h2>Zarządzanie grupami materiałów</h2>
-
-	<a href="{{path('homepage')}}" class="button"> Strona główna</a>
-
-	<p>
-		<a href="{{path('material_grupa')}}" class="button disable">Grupy</a>
-		<a href="{{path('material_material')}}" class="button">Materiały</a>
-		<a href="{{path('material_jm')}}" class="button">Jednostki Miary</a>
-	</p>
-	<p>
-		<a href="{{path('material_grupa_add')}}" class="button">Dodawanie grupy materiałów</a>
-		<a href="{{path('material_grupa_list')}}" class="button">Edycja grupy materiałów</a>
-	</p>
-
-	{% for flash_message in app.session.flashBag.get('info') %}
-			<div class="flash-notice">
-					{{ flash_message }}
-			</div>
-	{% endfor %}
-
 	{% include 'PjplMaterialBundle::grupa.html.twig' %}
 {% endblock %}

@@ -1,19 +1,42 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'PjplMaterialBundle:Material:base.html.twig' %}
+
+{% block navi %}
+	<h3>Edycja materiału</h3>
+	<a href="{{path('material_material')}}" class="btn btn-primary"> Zarządzanie materiałami</a>
+{% endblock %}
 
 {% block body %}
-	<h3>Edycja materiału</h3>
-{#	<a href="{{path('homepage')}}"> Strona główna</a>#}
-	<a href="{{path('material_material')}}" class="button"> Zarządzanie materiałami</a>
-	<hr>
 
-	{% for flash_message in app.session.flashBag.get('info') %}
-			<div class="flash-notice">
-					{{ flash_message }}
-			</div>
-	{% endfor %}
-
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<div>
+		<div class="panel-body">
+		{{ form_start(form,  { 'attr': {'class': 'form '} }) }}
+		{{ form_errors(form) }}
+		<div class="form-group">
+			{{ form_label(form.nazwa)}}
+			{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.kod)}}
+			{{ form_errors(form.kod,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.kod,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.jednostka_miary)}}
+			{{ form_errors(form.jednostka_miary,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.jednostka_miary,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_label(form.grupa_materialow)}}
+			{{ form_errors(form.grupa_materialow,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.grupa_materialow,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
+			{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
+		</div>
+		{{ form_end(form) }}
+		</div>
+	</div>
 
 {% endblock %}

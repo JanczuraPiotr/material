@@ -1,18 +1,29 @@
-{% extends 'PjplMaterialBundle::base.html.twig' %}
+{% extends 'PjplMaterialBundle:Grupa:base.html.twig' %}
+
+{% block navi %}
+
+	<h3>Dodawanie grupy materiałów</h3>
+	<p>
+		<a href="{{path('material_grupa')}}" class="btn btn-default"> Zarządzanie grupami</a>
+	</p>
+
+{% endblock %}
 
 {% block body %}
-	<h3>Dodawanie grupy materiałów</h3>
-{#	<a href="{{path('homepage')}}"> Strona główna</a>#}
-	<a href="{{path('material_grupa')}}" class="button"> Zarządzanie grupami</a>
-	<hr>
-
-	{% for flash_message in app.session.flashBag.get('info') %}
-			<div class="flash-notice">
-					{{ flash_message }}
-			</div>
-	{% endfor %}
-
-	{{ form_start(form) }}
-	{{ form_widget(form) }}
-	{{ form_end(form) }}
+	<div>
+		<div class="panel-body">
+		{{ form_start(form,  { 'attr': {'class': 'form-inline'} }) }}
+		{{ form_errors(form) }}
+		<div class="form-group">
+			{{ form_label(form.nazwa)}}
+			{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+		</div>
+		<div class="form-group">
+			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
+			{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
+		</div>
+		{{ form_end(form) }}
+		</div>
+	</div>
 {% endblock %}
