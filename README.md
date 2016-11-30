@@ -2,11 +2,12 @@ Pobranie źródeł z repozytorium:
 
 git clone https://JanczuraPiotr@bitbucket.org/JanczuraPiotr/material.git
 
-cd matrial
+cd material
 
 Pobrać composer.phar ze strony :
 
 https://getcomposer.org/download/
+
 i zainstalować według wskazówek
 
 uruchomić
@@ -35,7 +36,7 @@ adres_ip_tego_kompuera: material.pc
 
 a w pliku definiującym servery wirtualne dodać:
 
-
+```
 <VirtualHost *:80>
    ServerName material.pc
    DocumentRoot /home/piotr/public_html/material/web
@@ -46,3 +47,4 @@ a w pliku definiującym servery wirtualne dodać:
 		Allow from All
    </Directory>
 </VirtualHost>
+```
