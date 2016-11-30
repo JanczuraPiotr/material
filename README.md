@@ -34,7 +34,7 @@ Może być konieczność skonfigurowania servera www.
 w pliku /etc/hosts/
 adres_ip_tego_kompuera: material.pc
 
-a w pliku definiującym servery wirtualne dodać:
+a w pliku definiującym servery wirtualne dodać wpis wzorując się na przykładzie:
 
 ```
 <VirtualHost *:80>
