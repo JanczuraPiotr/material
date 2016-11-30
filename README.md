@@ -23,10 +23,10 @@ php app/console doctrine:schema:create
 
 Może wystąpić problem z prawami dostępu do katalogów app/cache i app/logs rozwiązujemy go poleceniami:
 
-rm -rf app/cache/*
-rm -rf app/logs/*
-sudo setfacl -R -m u:www-data:rwX -m u:'whoami':rwX app/cache app/logs
-sudo setfacl -dR -m u:www-data:rwx -m u:'whoami':rwx app/cache app/logs
+rm -rf app/cache/*<br>
+rm -rf app/logs/*<br>
+sudo setfacl -R -m u:www-data:rwX -m u:'whoami':rwX app/cache app/logs<br>
+sudo setfacl -dR -m u:www-data:rwx -m u:'whoami':rwx app/cache app/logs</br>
 
 
 Może być konieczność skonfigurowania servera www.
@@ -36,6 +36,7 @@ adres_ip_tego_kompuera: material.pc
 
 a w pliku definiującym servery wirtualne dodać:
 
+<code>
 <VirtualHost *:80>
    ServerName material.pc
    DocumentRoot /home/piotr/public_html/material/web
@@ -46,3 +47,4 @@ a w pliku definiującym servery wirtualne dodać:
 		Allow from All
    </Directory>
 </VirtualHost>
+</code>
