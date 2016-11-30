@@ -15,19 +15,8 @@
 	<p>
 		<a href="{{path('material_grupa')}}" class="button">Grupy</a>
 		<a href="{{path('material_material')}}" class="button">Materiały</a>
-		<a href="{{path('material_jm')}}" class="button">Jm</a>
+		<a href="{{path('material_jm')}}" class="button">Jednostki Miary</a>
 	</p>
 	<hr>
-	{#
-	<p>
-		<a href="{{path('material_grupa_add')}}">Dodawanie grupy materiałów</a>
-		<a href="{{path('material_grupa_edit')}}">Edycja grupy materiałów</a>
-		<a href="{{path('material_grupa_change_parent')}}">Edycja organizacji grupy materiałów</a>
-		<a href="{{path('material_material_add')}}">Dodawanie materiału</a>
-		<a href="{{path('material_material_edit')}}">Edycja materiału</a>
-		<a href="{{path('material_jm_add')}}">Dodawanie jednostki miary</a>
-		<a href="{{path('material_jm_edit')}}">Edycja jednostki miary</a>
-	</p>
-	#}
 	{% include 'PjplMaterialBundle::zestawienie.html.twig' %}
 {% endblock %}
