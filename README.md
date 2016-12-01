@@ -1,4 +1,4 @@
-Demo : http://piotr.janczura.pl/demo/material
+Demo : http://piotr.janczura.pl/demo/material/web
 
 Pobranie źródeł z repozytorium:
 
