@@ -1,3 +1,5 @@
+Demo : http://piotr.janczura.pl/demo/material
+
 Pobranie źródeł z repozytorium:
 
 git clone https://JanczuraPiotr@bitbucket.org/JanczuraPiotr/material.git
