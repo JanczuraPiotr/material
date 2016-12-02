@@ -1,15 +1,9 @@
 {% extends 'PjplMaterialBundle:JednostkaMiary:base.html.twig' %}
 
 {% block navi %}
-	<p>
-		<a href="{{path('material_grupa')}}" class="btn btn-primary">Grupy</a>
-		<a href="{{path('material_material')}}" class="btn btn-primary">Materiały</a>
-		<a href="{{path('material_jm')}}" class="btn btn-primary disabled">Jednostki Miary</a>
-	</p>
-	<p>
-		<a href="{{path('material_jm_add')}}" class="btn btn-primary">Dodawanie materiału</a>
-		<a href="{{path('material_jm_list')}}" class="btn btn-primary">Edycja </a>
-	</p>
+	{{ parent() }}
+	<li><a href="{{path('material_jm_add')}}">Dodawanie materiału</a></li>
+	<li><a href="{{path('material_jm_list')}}">Edycja </a></li>
 {% endblock %}
 
 

@@ -18,22 +18,28 @@
 					</div>
 				</div>
 
-				{% block flashMessage %}
-					{% for flash_message in app.session.flashBag.get('info') %}
-							<div class="alert alert-danger">
-								{{ flash_message }}
-							</div>
-					{% endfor %}
-				{% endblock %}
-
 				<div class="container">
-					<div class="navi">
-					{% block navi %}
-					{% endblock %}
-					</div>
+					<nav class="navbar navbar-default">
+						<div class="container-fluid">
+							<div class="navbar-header">
+								<ul class="nav navbar-nav">
+									{% block navi %}
+									{% endblock %}
+								</ul>
+							</div>
+						</div>
+					</nav>
 				</div>
 
+
 				<div class="container">
+					{% block flashMessage %}
+						{% for flash_message in app.session.flashBag.get('info') %}
+								<div class="alert alert-danger">
+									{{ flash_message }}
+								</div>
+						{% endfor %}
+					{% endblock %}
 					{% block body %}
 					{% endblock %}
 				</div>

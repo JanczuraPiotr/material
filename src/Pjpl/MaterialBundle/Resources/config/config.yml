@@ -1,0 +1,3 @@
+twig:
+    form:
+        resources: [ 'PjplMaterialBundle:Form:form_errors.html.twig' ]

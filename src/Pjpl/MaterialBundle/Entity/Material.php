@@ -16,11 +16,19 @@ class Material{
 	protected $id;
 	/**
 	 * @Assert\NotBlank()
+	 * @Assert\Length(
+	 *		min = 2,
+	 *		minMessage = "Za krótki kod materiału"
+	 * )
 	 * @ORM\Column(type="string", name="kod", unique=true, length=16, nullable=false)
 	 */
 	protected $kod;
 	/**
 	 * @Assert\NotBlank()
+	 * @Assert\Length(
+	 *		min = 3,
+	 *		minMessage = "Za krótka nazwa materiału"
+	 * )
 	 * @ORM\Column(type="string", name="nazwa", unique=true, length=64, nullable=false)
 	 */
 	protected $nazwa;

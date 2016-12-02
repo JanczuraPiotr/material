@@ -1,12 +1,2 @@
 {% extends 'PjplMaterialBundle::base.html.twig' %}
 
-{% block jumbotron %}
-	<h2>Zarządzanie materiałami</h2>
-	<a href="{{path('homepage')}}" class="btn btn-default"> Strona główna</a>
-{% endblock %}
-
-{% block navi %}
-		<a href="{{path('material_grupa')}}" class="btn btn-default">Grupy</a>
-		<a href="{{path('material_material')}}" class="btn btn-default">Materiały</a>
-		<a href="{{path('material_jm')}}" class="btn btn-default">Jednostki Miary</a>
-{% endblock %}

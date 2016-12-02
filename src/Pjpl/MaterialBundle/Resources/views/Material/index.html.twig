@@ -1,15 +1,10 @@
 {% extends 'PjplMaterialBundle:Material:base.html.twig' %}
 
+
 {% block navi %}
-	<p>
-		<a href="{{path('material_grupa')}}" class="btn btn-primary">Grupy</a>
-		<a href="{{path('material_material')}}" class="btn btn-primary disabled">Materiały</a>
-		<a href="{{path('material_jm')}}" class="btn btn-primary">Jednostki Miary</a>
-	</p>
-	<p>
-		<a href="{{path('material_material_add')}}" class="btn btn-primary">Dodawanie materiału</a>
-		<a href="{{path('material_material_list')}}" class="btn btn-primary">Edycja materiału</a>
-	</p>
+	{{ parent() }}
+	<li><a href="{{path('material_material_add')}}">Dodawanie materiału</a></li>
+	<li><a href="{{path('material_material_list')}}">Edycja materiału</a></li>
 {% endblock %}
 
 {% block body %}

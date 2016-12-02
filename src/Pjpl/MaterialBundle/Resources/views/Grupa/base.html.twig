@@ -2,5 +2,8 @@
 
 {% block jumbotron %}
 	<h2>Zarządzanie grupami materiałów</h2>
-	<a href="{{path('homepage')}}" class="btn btn-default"> Strona główna</a>
+{% endblock %}
+
+{% block navi %}
+	<li><a href="{{path('material_homepage')}}" class="navbar-brand"> Zarządzanie materiałami </a></li>
 {% endblock %}

@@ -1,8 +1,9 @@
 {% extends 'PjplMaterialBundle:Material:base.html.twig' %}
 
 {% block navi %}
-	<h3>Edycja materiału</h3>
-	<a href="{{path('material_material')}}" class="btn btn-default"> Zarządzanie materiałami</a>
+	{{ parent() }}
+	<li><a href="{{path('material_material_add')}}">Dodawanie materiału</a></li>
+	<li class="active"><a href="{{path('material_material_list')}}">Edycja materiału</a></li>
 {% endblock %}
 
 {% block body %}

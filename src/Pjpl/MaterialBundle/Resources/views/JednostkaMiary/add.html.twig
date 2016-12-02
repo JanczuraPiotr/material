@@ -2,8 +2,9 @@
 
 
 {% block navi %}
-	<h3>Dodawanie jednostki miary</h3>
-	<a href="{{path('material_jm')}}" class="btn btn-default"> Zarządzanie jednostkami miary</a>
+	{{ parent() }}
+	<li class="active"><a href="{{path('material_jm_add')}}">Dodawanie materiału</a></li>
+	<li><a href="{{path('material_jm_list')}}">Edycja </a></li>
 {% endblock %}
 
 {% block body %}

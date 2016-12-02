@@ -1,8 +1,10 @@
 {% extends 'PjplMaterialBundle:Material:base.html.twig' %}
+{#	<h3>Dodawanie materiału</h3>#}
 
 {% block navi %}
-	<h3>Dodawanie materiału</h3>
-	<a href="{{path('material_material')}}" class="btn btn-default"> Zarządzanie materiałami</a>
+	{{ parent() }}
+	<li class="active"><a href="{{path('material_material_add')}}">Dodawanie materiału</a></li>
+	<li><a href="{{path('material_material_list')}}">Edycja materiału</a></li>
 {% endblock %}
 
 
@@ -14,23 +16,23 @@
 		{{ form_errors(form) }}
 		<div class="form-group">
 			{{ form_label(form.nazwa)}}
-			{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
 			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_errors(form.nazwa) }}
 		</div>
 		<div class="form-group">
 			{{ form_label(form.kod)}}
-			{{ form_errors(form.kod,  { 'attr': {'class': 'form-control'} }) }}
 			{{ form_widget(form.kod,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_errors(form.kod) }}
 		</div>
 		<div class="form-group">
 			{{ form_label(form.jednostka_miary)}}
-			{{ form_errors(form.jednostka_miary,  { 'attr': {'class': 'form-control'} }) }}
 			{{ form_widget(form.jednostka_miary,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_errors(form.jednostka_miary) }}
 		</div>
 		<div class="form-group">
 			{{ form_label(form.grupa_materialow)}}
-			{{ form_errors(form.grupa_materialow,  { 'attr': {'class': 'form-control'} }) }}
 			{{ form_widget(form.grupa_materialow,  { 'attr': {'class': 'form-control'} }) }}
+			{{ form_errors(form.grupa_materialow) }}
 		</div>
 		<div class="form-group">
 			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}

@@ -17,11 +17,19 @@ class JednostkaMiary {
 	protected $id;
 	/**
 	 * @Assert\NotBlank()
+	 * @Assert\Length(
+	 *		min = 3,
+	 *		minMessage = "Za krótka nazwa jednostki miary"
+	 * )
 	 * @ORM\Column(type="string", name="nazwa", unique=true, length=32, nullable=false)
 	 */
 	protected $nazwa;
 	/**
 	 * @Assert\NotBlank()
+	 * @Assert\Length(
+	 *		min = 1,
+	 *		minMessage = "Za krótki skrót jednostki miary"
+	 * )
 	 * @ORM\Column(type="string", name="skrot", unique=true, length=8, nullable=false)
 	 */
 	protected $skrot;

@@ -21,7 +21,13 @@ class GrupaMaterialow {
 	 */
 	protected $id;
 	/**
-	 * @Assert\NotBlank()
+	 * @Assert\NotBlank(
+	 *		message = "Musisz podać nazwę"
+	 * )
+	 * @Assert\Length(
+	 *		min = 3,
+	 *		minMessage = "Za krótka nazwa grupy materiału"
+	 *	)
 	 * @ORM\Column(type="string", name="nazwa", unique=true, length=64, nullable=false)
 	 */
 	protected $nazwa;

@@ -1,15 +1,17 @@
 {% extends 'PjplMaterialBundle:Grupa:base.html.twig' %}
 
 {% block navi %}
+	{{ parent() }}
+	<li><a href="{{path('material_grupa_add')}}">Dodawanie grupy materiałów</a></li>
+	<li><a href="{{path('material_grupa_list')}}">Edycja grupy materiałów</a></li>
+{#
 	<p>
-		<a href="{{path('material_grupa')}}" class="btn btn-primary disabled">Grupy</a>
 		<a href="{{path('material_material')}}" class="btn btn-primary">Materiały</a>
 		<a href="{{path('material_jm')}}" class="btn btn-primary">Jednostki Miary</a>
 	</p>
 	<p>
-		<a href="{{path('material_grupa_add')}}" class="btn btn-primary">Dodawanie grupy materiałów</a>
-		<a href="{{path('material_grupa_list')}}" class="btn btn-primary">Edycja grupy materiałów</a>
 	</p>
+#}
 {% endblock %}
 
 {% block body %}

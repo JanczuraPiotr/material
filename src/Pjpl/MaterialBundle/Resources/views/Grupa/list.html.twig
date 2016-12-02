@@ -1,9 +1,17 @@
 {% extends 'PjplMaterialBundle:Grupa:base.html.twig' %}
-
+{#
 {% block navi %}
 	<h3>Edycja grupy materiałowej</h3>
 	<a href="{{path('material_jm')}}" class="btn btn-default"> Zarządzanie grupą materiałową</a>
 {% endblock %}
+#}
+
+{% block navi %}
+	{{ parent() }}
+	<li><a href="{{path('material_grupa_add')}}">Dodawanie grupy materiałów</a></li>
+	<li class="active"><a href="{{path('material_grupa_list')}}">Edycja grupy materiałów</a></li>
+{% endblock %}
+
 
 {% block body %}
 

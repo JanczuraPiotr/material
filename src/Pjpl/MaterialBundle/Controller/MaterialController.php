@@ -33,6 +33,8 @@ class MaterialController extends Controller{
 						$this->get('session')->getFlashBag()->add('info','Materiał jest już w bazie danych');
 						$return = $this->render('PjplMaterialBundle:Material:add.html.twig',['form' => $form->createView()]);
 					}
+				}else{
+					$return = $this->render('PjplMaterialBundle:Material:add.html.twig',['form' => $form->createView()]);
 				}
 			}else if($form->get('cancel')->isClicked()){
 				$return = $this->render('PjplMaterialBundle:Material:index.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
@@ -49,11 +51,11 @@ class MaterialController extends Controller{
 	public function listAction(Request $request){
 		return $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 	}
-	public function editAction(Request $request){
+	public function editAction(Request $request, $id){
 		$return = $this->redirectToRoute('material_material');
 		$em = $this->container->get('doctrine')->getManager();
 		$jmRepo = $em->getRepository('PjplMaterialBundle:Material');
-		$materialEntity = $jmRepo->find($request->get('id'));
+		$materialEntity = $jmRepo->find($id);
 
 		$form = $this->createForm(MaterialForm::class, $materialEntity);
 		$form->handleRequest($request);
@@ -66,14 +68,16 @@ class MaterialController extends Controller{
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($materialEntity);
 						$em->flush();
-						$return = $this->render('PjplMaterialBundle:Material:index.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+						$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('info','Materiał jest już w bazie danych');
 						$return = $this->render('PjplMaterialBundle:Material:edit.html.twig',['form' => $form->createView()]);
 					}
+				}else{
+					$return = $this->render('PjplMaterialBundle:Material:add.html.twig',['form' => $form->createView()]);
 				}
 			}else if($form->get('cancel')->isClicked()){
-				$return = $this->render('PjplMaterialBundle:Material:index.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 			}else{
 				$return = $this->render('PjplMaterialBundle:Material:edit.html.twig',['form' => $form->createView()]);
 			}

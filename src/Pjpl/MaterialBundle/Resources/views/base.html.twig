@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
+
 {% block stylesheets %}
 	{{ parent() }}
-	<link href="{{ asset('bundles/pjplmaterial/css/main.css') }}" type="text/css" rel="stylesheet" />
+		<link href="{{ asset('bundles/pjplmaterial/css/main.css') }}" type="text/css" rel="stylesheet" />
+{% endblock %}
+
+{% block jumbotron %}
+	<h2>Zarządzanie materiałami</h2>
 {% endblock %}
 
 {% block navi %}
-	<p>
-		<a href="{{path('material_grupa')}}" class="btn btn-default">Grupy</a>
-		<a href="{{path('material_material')}}" class="btn btn-default">Materiały</a>
-		<a href="{{path('material_jm')}}" class="btn btn-default">Jednostki Miary</a>
-	</p>
+	<li><a href="{{path('homepage')}}"  class="navbar-brand"> Strona główna</a></li>
+	<li><a href="{{path('material_grupa')}}" >Grupy</a></li>
+	<li><a href="{{path('material_material')}}">Materiały</a></li>
+	<li><a href="{{path('material_jm')}}" >Jednostki Miary</a></li>
 {% endblock %}
