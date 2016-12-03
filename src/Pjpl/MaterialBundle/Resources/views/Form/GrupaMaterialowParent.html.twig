@@ -1,0 +1,30 @@
+{{ form_start(form,  { 'attr': {'class': 'form '} }) }}
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<div class="panel-title">
+				{{ title }}
+			</div>
+		</div>
+
+		<div class="panel-body">
+
+			{{ form_errors(form) }}
+			<div class="form-group">
+				{{ form_label(form.nazwa)}}
+				{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+				{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
+			</div>
+			<div class="form-group">
+				{{ form_label(form.parent)}}
+				{{ form_errors(form.parent,  { 'attr': {'class': 'form-control'} }) }}
+				{{ form_widget(form.parent,  { 'attr': {'class': 'form-control'} }) }}
+			</div>
+		</div>
+		<div class="panel-footer">
+			<div class="form-group">
+				{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
+				{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
+			</div>
+		</div>
+	</div>
+{{ form_end(form) }}

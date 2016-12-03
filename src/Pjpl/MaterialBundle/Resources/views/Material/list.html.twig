@@ -19,6 +19,12 @@
 					Kod
 				</th>
 				<th>
+				Grupa
+				</th>
+				<th>
+					Jm
+				</th>
+				<th>
 				</th>
 			</tr>
 		</thead>
@@ -27,6 +33,8 @@
 					<tr>
 						<td>{{ material.nazwa }}</td>
 						<td>{{ material.kod }}</td>
+						<td>{{ material.grupamaterialow }}</td>
+						<td>{{ material.jednostkamiary }}</td>
 						<td><a href="{{ path('material_material_edit', {'id' : material.id}) }}" class="btn btn-primary">Edytuj</a></td>
 					</tr>
 			{% endfor %}

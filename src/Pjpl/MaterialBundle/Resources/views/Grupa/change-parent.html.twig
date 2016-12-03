@@ -9,27 +9,5 @@
 
 
 {% block body %}
-
-	<div>
-		<div class="panel-body">
-		{{ form_start(form,  { 'attr': {'class': 'form '} }) }}
-		{{ form_errors(form) }}
-		<div class="form-group">
-			{{ form_label(form.nazwa)}}
-			{{ form_errors(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
-		</div>
-		<div class="form-group">
-			{{ form_label(form.parent)}}
-			{{ form_errors(form.parent,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_widget(form.parent,  { 'attr': {'class': 'form-control'} }) }}
-		</div>
-		<div class="form-group">
-			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
-			{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
-		</div>
-		{{ form_end(form) }}
-		</div>
-	</div>
-
+	{% include 'PjplMaterialBundle:Form:GrupaMaterialowParent.html.twig' with { title : 'Zmiana grupy nadrzędnej' } %}
 {% endblock %}

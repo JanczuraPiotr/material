@@ -11,28 +11,41 @@
     </head>
     <body>
 
+			{% block jumbotronParent %}
 				<div class="jumbotron">
 					<div class="container">
 						{% block jumbotron %}
 						{% endblock %}
 					</div>
 				</div>
+			{% endblock %}
 
+			<nav class="navbar navbar-default">
 				<div class="container">
-					<nav class="navbar navbar-default">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<ul class="nav navbar-nav">
-									{% block navi %}
-									{% endblock %}
-								</ul>
-							</div>
-						</div>
-					</nav>
+					<div class="navbar-header">
+						<button type="button"
+										class="navbar-toggle collapsed"
+										data-toggle="collapse"
+										data-target="#bs-example-navbar-collapse-1"
+										aria-expanded="false"
+						>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav">
+							{% block navi %}
+							{% endblock %}
+						</ul>
+					</div>
 				</div>
-
+			</nav>
 
 				<div class="container">
+
 					{% block flashMessage %}
 						{% for flash_message in app.session.flashBag.get('info') %}
 								<div class="alert alert-danger">
@@ -40,11 +53,11 @@
 								</div>
 						{% endfor %}
 					{% endblock %}
+
 					{% block body %}
 					{% endblock %}
+
 				</div>
-
-
 
         {% block javascripts %}
 					<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

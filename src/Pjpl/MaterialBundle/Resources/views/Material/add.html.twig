@@ -9,37 +9,5 @@
 
 
 {% block body %}
-
-	<div>
-		<div class="panel-body">
-		{{ form_start(form,  { 'attr': {'class': 'form '} }) }}
-		{{ form_errors(form) }}
-		<div class="form-group">
-			{{ form_label(form.nazwa)}}
-			{{ form_widget(form.nazwa,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_errors(form.nazwa) }}
-		</div>
-		<div class="form-group">
-			{{ form_label(form.kod)}}
-			{{ form_widget(form.kod,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_errors(form.kod) }}
-		</div>
-		<div class="form-group">
-			{{ form_label(form.jednostka_miary)}}
-			{{ form_widget(form.jednostka_miary,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_errors(form.jednostka_miary) }}
-		</div>
-		<div class="form-group">
-			{{ form_label(form.grupa_materialow)}}
-			{{ form_widget(form.grupa_materialow,  { 'attr': {'class': 'form-control'} }) }}
-			{{ form_errors(form.grupa_materialow) }}
-		</div>
-		<div class="form-group">
-			{{ form_widget(form.zatwierdz,  { 'attr': {'class': 'btn btn-primary'} }) }}
-			{{ form_widget(form.cancel,  { 'attr': {'class': 'btn btn-default'} }) }}
-		</div>
-		{{ form_end(form) }}
-		</div>
-	</div>
-
+	{% include 'PjplMaterialBundle:Form:Material.html.twig' with { title : 'Dodawanie materialu' } %}
 {% endblock %}

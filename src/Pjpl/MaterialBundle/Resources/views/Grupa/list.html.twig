@@ -30,6 +30,7 @@
 		 {% for grupa in grupa_array %}
         <tr>
 					<td>{{ grupa.nazwa }}</td>
+
 					<td><a href="{{ path('material_grupa_edit', {'id' : grupa.id}) }}" class="btn btn-primary">Edytuj</a></td>
 					<td><a href="{{ path('material_grupa_change_parent', {'id' : grupa.id}) }}" class="btn btn-primary">Zmień grupę nadrzędną</a></td>
 				</tr>
