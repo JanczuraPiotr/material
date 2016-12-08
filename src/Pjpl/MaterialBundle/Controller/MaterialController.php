@@ -29,7 +29,7 @@ class MaterialController extends Controller{
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($materialEntity);
 						$em->flush();
-						$this->get('session')->getFlashBag()->add('info', 'Dodano nowy materiał : '.$materialEntity);
+						$this->get('session')->getFlashBag()->add('success', 'Dodano nowy materiał : '.$materialEntity);
 						$return = $this->render('PjplMaterialBundle:Material:index.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Materiał jest już w bazie danych');
@@ -71,7 +71,7 @@ class MaterialController extends Controller{
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($materialEntity);
 						$em->flush();
-						$this->get('session')->getFlashBag()->add('info', 'Zmieniono wpis o materiale : '.$materialEntity);
+						$this->get('session')->getFlashBag()->add('success', 'Zmieniono wpis o materiale : '.$materialEntity);
 						$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Materiał jest już w bazie danych');
@@ -104,7 +104,7 @@ class MaterialController extends Controller{
 				try{
 					$em->remove($materialEntity);
 					$em->flush();
-					$this->get('session')->getFlashBag()->add('info', 'Usunięto materiał : '.$materialEntity);
+					$this->get('session')->getFlashBag()->add('success', 'Usunięto materiał : '.$materialEntity);
 					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 				} catch (ForeignKeyConstraintViolationException $ex){
 					$this->get('session')->getFlashBag()->add('error','Usunięcie materiału : "'.$materialEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
@@ -114,7 +114,8 @@ class MaterialController extends Controller{
 					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 				}
 			}else{
-					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',[
+				$this->get('session')->getFlashBag()->add('info','Potwierdź usunięcie materiału');
+				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',[
 							'material_array' => $this->get('material.materialy')->getArray(),
 							'delete_id' => $id
 							]);

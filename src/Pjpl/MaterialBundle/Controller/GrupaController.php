@@ -31,7 +31,7 @@ class GrupaController extends Controller
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($grupaMaterialow);
 						$em->flush();
-						$this->get('session')->getFlashBag()->add('info', 'Dodano nową grupę materiałów : '.$grupaMaterialow);
+						$this->get('session')->getFlashBag()->add('success', 'Dodano nową grupę materiałów : '.$grupaMaterialow);
 						$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Grupa materiałów jest już w bazie danych');
@@ -48,7 +48,7 @@ class GrupaController extends Controller
 			}
 
 		} catch (\Exception $ex) {
-				$this->get('session')->getFlashBag()->add('info','Nieznany błąd');
+				$this->get('session')->getFlashBag()->add('success','Nieznany błąd');
 				$return = $this->redirectToRoute('materia_grupa');
 		}
 
@@ -74,7 +74,7 @@ class GrupaController extends Controller
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($grupaEntity);
 						$em->flush();
-						$this->get('session')->getFlashBag()->add('info', 'Dokonano edycji grupy materiałów : '.$grupaEntity);
+						$this->get('session')->getFlashBag()->add('success', 'Dokonano edycji grupy materiałów : '.$grupaEntity);
 						$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Grupa jest już w bazie danych');
@@ -109,22 +109,23 @@ class GrupaController extends Controller
 				try{
 					$em->remove($grupaEntity);
 					$em->flush();
-					$this->get('session')->getFlashBag()->add('info', 'Usunięto grupę materiałów : '.$grupaEntity);
+					$this->get('session')->getFlashBag()->add('success', 'Usunięto grupę materiałów : '.$grupaEntity);
 					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 				} catch (ForeignKeyConstraintViolationException $ex){
 					$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
 					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 				} catch (\Exception $ex) {
-					$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" nie powiodoło sie z nieznanego powodu.');
+					$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów nie powiodoło sie z nieznanego powodu.');
 					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
 							'grupa_array' => $this->get('material.grupa')->getArray(),
 							]);
 				}
 			}else{
-					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
-							'grupa_array' => $this->get('material.grupa')->getArray(),
-							'delete_id' => $id
-							]);
+				$this->get('session')->getFlashBag()->add('info','Potwierdź usunięcie grupy materiałów');
+				$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
+						'grupa_array' => $this->get('material.grupa')->getArray(),
+						'delete_id' => $id
+						]);
 			}
 
 		} catch (\Exception $ex) {
@@ -153,7 +154,7 @@ class GrupaController extends Controller
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($grupaEntity);
 						$em->flush();
-						$this->get('session')->getFlashBag()->add('info','Zmieniono nadgrupę dla grupy : '.$grupaEntity);
+						$this->get('session')->getFlashBag()->add('success','Zmieniono nadgrupę dla grupy : '.$grupaEntity);
 						$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 					} catch (Exception $ex){
 						$this->get('session')->getFlashBag()->add('error','Nie powiodła się zmiana grupy.');
