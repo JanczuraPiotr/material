@@ -96,27 +96,33 @@ class MaterialController extends Controller{
 	public function deleteAction(Request $request, $id, $confirm = false){
 		$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
 
-		if($confirm){
-			$em = $this->getDoctrine()->getManager();
-			$materialRepo = $em->getRepository('PjplMaterialBundle:Material');
-			try{
+		try{
+			if($confirm){
+				$em = $this->getDoctrine()->getManager();
+				$materialRepo = $em->getRepository('PjplMaterialBundle:Material');
 				$materialEntity = $materialRepo->find($id);
-				$em->remove($materialEntity);
-				$em->flush();
-				$this->get('session')->getFlashBag()->add('info', 'Usunięto materiał : '.$materialEntity);
-				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
-			} catch (ForeignKeyConstraintViolationException $ex){
-				$this->get('session')->getFlashBag()->add('error','Usunięcie materiału : "'.$materialEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
-				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
-			} catch (\Exception $ex) {
-				$this->get('session')->getFlashBag()->add('error','Usunięcie materiału nie powiodoło sie z nieznanego powodu.');
-				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+				try{
+					$em->remove($materialEntity);
+					$em->flush();
+					$this->get('session')->getFlashBag()->add('info', 'Usunięto materiał : '.$materialEntity);
+					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+				} catch (ForeignKeyConstraintViolationException $ex){
+					$this->get('session')->getFlashBag()->add('error','Usunięcie materiału : "'.$materialEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
+					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+				} catch (\Exception $ex) {
+					$this->get('session')->getFlashBag()->add('error','Usunięcie materiału nie powiodoło sie z nieznanego powodu.');
+					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',['material_array' => $this->get('material.materialy')->getArray()]);
+				}
+			}else{
+					$return = $this->render('PjplMaterialBundle:Material:list.html.twig',[
+							'material_array' => $this->get('material.materialy')->getArray(),
+							'delete_id' => $id
+							]);
 			}
-		}else{
-				$return = $this->render('PjplMaterialBundle:Material:list.html.twig',[
-						'material_array' => $this->get('material.materialy')->getArray(),
-						'delete_id' => $id
-						]);
+		} catch (\Exception $ex) {
+				$this->get('session')->getFlashBag()->add('error','Nieznany błąd');
+				$return = $this->redirectToRoute('material_material');
+
 		}
 
 		return $return;

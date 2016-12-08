@@ -89,31 +89,38 @@ class JednostkaMiaryController extends Controller{
 	public function deleteAction(Request $request, $id, $confirm = false){
 		$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',['jm_array' => $this->get('material.jm')->getArray()]);
 
-		if($confirm){
-			$em = $this->getDoctrine()->getManager();
-			$jmRepo = $em->getRepository('PjplMaterialBundle:JednostkaMiary');
-			$jmEntity = $jmRepo->find($id);
-			try{
-				$em->remove($jmEntity);
-				$em->flush();
-				$this->get('session')->getFlashBag()->add('info', 'Usunięto jednoskę miary : '.$jmEntity);
-				$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',['jm_array' => $this->get('material.jm')->getArray()]);
-			} catch (ForeignKeyConstraintViolationException $ex){
-				$this->get('session')->getFlashBag()->add('error','Usunięcie jednostki miary : "'.$jmEntity->getNazwa().'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
-				$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
-						'jm_array' => $this->get('material.jm')->getArray(),
-						]);
-			} catch (\Exception $ex) {
-				$this->get('session')->getFlashBag()->add('error','Usunięcie jednostki miary : "'.$jmEntity->getNazwa().'" nie powiodoło sie z nieznanego powodu.');
-				$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
-						'jm_array' => $this->get('material.jm')->getArray(),
-						]);
+		try{
+
+			if($confirm){
+				$em = $this->getDoctrine()->getManager();
+				$jmRepo = $em->getRepository('PjplMaterialBundle:JednostkaMiary');
+				$jmEntity = $jmRepo->find($id);
+				try{
+					$em->remove($jmEntity);
+					$em->flush();
+					$this->get('session')->getFlashBag()->add('info', 'Usunięto jednoskę miary : '.$jmEntity);
+					$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',['jm_array' => $this->get('material.jm')->getArray()]);
+				} catch (ForeignKeyConstraintViolationException $ex){
+					$this->get('session')->getFlashBag()->add('error','Usunięcie jednostki miary : "'.$jmEntity->getNazwa().'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
+					$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
+							'jm_array' => $this->get('material.jm')->getArray(),
+							]);
+				} catch (\Exception $ex) {
+					$this->get('session')->getFlashBag()->add('error','Usunięcie jednostki miary : "'.$jmEntity->getNazwa().'" nie powiodoło sie z nieznanego powodu.');
+					$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
+							'jm_array' => $this->get('material.jm')->getArray(),
+							]);
+				}
+			}else{
+					$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
+							'jm_array' => $this->get('material.jm')->getArray(),
+							'delete_id' => $id
+							]);
 			}
-		}else{
-				$return = $this->render('PjplMaterialBundle:JednostkaMiary:list.html.twig',[
-						'jm_array' => $this->get('material.jm')->getArray(),
-						'delete_id' => $id
-						]);
+
+		} catch (\Exception $ex) {
+				$this->get('session')->getFlashBag()->add('error','Nieznany błąd');
+				$return = $this->redirectToRoute('material_material');
 		}
 
 		return $return;

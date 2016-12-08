@@ -31,7 +31,7 @@ class GrupaController extends Controller
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($grupaMaterialow);
 						$em->flush();
-						$this->get('session')->getFlashBag->add('info', 'Dodano nową grupę materiałów : '.$grupaMaterialow);
+						$this->get('session')->getFlashBag()->add('info', 'Dodano nową grupę materiałów : '.$grupaMaterialow);
 						$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Grupa materiałów jest już w bazie danych');
@@ -74,7 +74,7 @@ class GrupaController extends Controller
 						$em = $this->getDoctrine()->getManager();
 						$em->persist($grupaEntity);
 						$em->flush();
-						$this->get('session')->getFlashBag->add('info', 'Dokonano edycji grupy materiałów : '.$grupaEntity);
+						$this->get('session')->getFlashBag()->add('info', 'Dokonano edycji grupy materiałów : '.$grupaEntity);
 						$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 					} catch (UniqueConstraintViolationException $ex){
 						$this->get('session')->getFlashBag()->add('error','Grupa jest już w bazie danych');
@@ -100,29 +100,37 @@ class GrupaController extends Controller
 	public function deleteAction(Request $request, $id, $confirm = false){
 		$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
 
-		if($confirm){
-			$em = $this->getDoctrine()->getManager();
-			$grupaRepo = $em->getRepository('PjplMaterialBundle:GrupaMaterialow');
-			$grupaEntity = $grupaRepo->find($id);
-			try{
-				$em->remove($grupaEntity);
-				$em->flush();
-				$this->get('session')->getFlashBag()->add('info', 'Usunięto grupę materiałów : '.$grupaEntity);
-				$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
-			} catch (ForeignKeyConstraintViolationException $ex){
-				$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
-				$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
-			} catch (\Exception $ex) {
-				$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" nie powiodoło sie z nieznanego powodu.');
-				$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
-						'grupa_array' => $this->get('material.grupa')->getArray(),
-						]);
+		try{
+
+			if($confirm){
+				$em = $this->getDoctrine()->getManager();
+				$grupaRepo = $em->getRepository('PjplMaterialBundle:GrupaMaterialow');
+				$grupaEntity = $grupaRepo->find($id);
+				try{
+					$em->remove($grupaEntity);
+					$em->flush();
+					$this->get('session')->getFlashBag()->add('info', 'Usunięto grupę materiałów : '.$grupaEntity);
+					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
+				} catch (ForeignKeyConstraintViolationException $ex){
+					$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" jest niemożliwe ze względu na związanie relacjami z innymi rekordami.');
+					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',['grupa_array' => $this->get('material.grupa')->getArray()]);
+				} catch (\Exception $ex) {
+					$this->get('session')->getFlashBag()->add('error','Usunięcie grupy materiałów : "'.$grupaEntity.'" nie powiodoło sie z nieznanego powodu.');
+					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
+							'grupa_array' => $this->get('material.grupa')->getArray(),
+							]);
+				}
+			}else{
+					$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
+							'grupa_array' => $this->get('material.grupa')->getArray(),
+							'delete_id' => $id
+							]);
 			}
-		}else{
-				$return = $this->render('PjplMaterialBundle:Grupa:list.html.twig',[
-						'grupa_array' => $this->get('material.grupa')->getArray(),
-						'delete_id' => $id
-						]);
+
+		} catch (\Exception $ex) {
+				$this->get('session')->getFlashBag()->add('error','Nieznany błąd');
+				$return = $this->redirectToRoute('material_material');
+
 		}
 
 		return $return;
