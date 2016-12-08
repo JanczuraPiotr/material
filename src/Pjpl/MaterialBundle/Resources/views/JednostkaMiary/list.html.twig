@@ -24,9 +24,29 @@
 		<tbody>
 			 {% for jm in jm_array %}
 					<tr>
-						<td>{{ jm.nazwa }}</td>
+						<td>
+							{{ jm.nazwa }}
+							<a name="{{ 'jm'~jm.id }}"></a>
+						</td>
 						<td>{{ jm.skrot }}</td>
 						<td><a href="{{ path('material_jm_edit', {'id' : jm.id}) }}" class="btn btn-primary">Edytuj</a></td>
+						{% if ( delete_id is defined and delete_id == jm.id) %}
+							<td>
+								<a href="{{ path('material_jm_delete', {'id' : jm.id, 'confirm': true}) }}"
+									 class="btn btn-danger"
+								>
+									Potwierdzam usunięcie
+								</a>
+							</td>
+						{% else %}
+							<td>
+								<a href="{{ path('material_jm_delete', {'id' : jm.id}) }}#{{ 'jm'~jm.id }}"
+									 class="btn btn-primary"
+								>
+									Usuń jednostkę
+								</a>
+							</td>
+						{% endif %}
 					</tr>
 			{% endfor %}
 		</tbody>

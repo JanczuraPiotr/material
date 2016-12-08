@@ -1,10 +1,4 @@
 {% extends 'PjplMaterialBundle:Grupa:base.html.twig' %}
-{#
-{% block navi %}
-	<h3>Edycja grupy materiałowej</h3>
-	<a href="{{path('material_jm')}}" class="btn btn-default"> Zarządzanie grupą materiałową</a>
-{% endblock %}
-#}
 
 {% block navi %}
 	{{ parent() }}
@@ -19,20 +13,34 @@
 	<caption>Lista grup materiałowych</caption>
 	<thead>
 		<tr>
-			<th>
-				Nazwa
-			</th>
-			<th>
-			</th>
+			<th>Nazwa</th> <th></th>	<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		 {% for grupa in grupa_array %}
         <tr>
-					<td>{{ grupa.nazwa }}</td>
-
+					<td>{{ grupa.nazwa }}
+							<a name="{{ 'grupa'~grupa.id }}"></a>
+					</td>
 					<td><a href="{{ path('material_grupa_edit', {'id' : grupa.id}) }}" class="btn btn-primary">Edytuj</a></td>
 					<td><a href="{{ path('material_grupa_change_parent', {'id' : grupa.id}) }}" class="btn btn-primary">Zmień grupę nadrzędną</a></td>
+					{% if ( delete_id is defined and delete_id == grupa.id) %}
+						<td>
+							<a href="{{ path('material_grupa_delete', {'id' : grupa.id, 'confirm': true}) }}"
+								 class="btn btn-danger"
+							>
+								Potwierdzam usunięcie
+							</a>
+						</td>
+					{% else %}
+						<td>
+							<a href="{{ path('material_grupa_delete', {'id' : grupa.id}) }}#{{ 'grupa'~grupa.id }}"
+								 class="btn btn-primary"
+							>
+								Usuń grupę
+							</a>
+						</td>
+					{% endif %}
 				</tr>
     {% endfor %}
 	</tbody>

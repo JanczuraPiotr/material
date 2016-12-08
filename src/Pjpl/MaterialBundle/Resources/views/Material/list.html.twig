@@ -12,30 +12,38 @@
 		<caption>Lista materiałów</caption>
 		<thead>
 			<tr>
-				<th>
-					Nazwa
-				</th>
-				<th>
-					Kod
-				</th>
-				<th>
-				Grupa
-				</th>
-				<th>
-					Jm
-				</th>
-				<th>
-				</th>
+				<th>Nazwa</th><th>Kod</th><th>Grupa</th><th>Jm</th><th></th><th></th>
 			</tr>
 		</thead>
 		<tbody>
 			 {% for material in material_array %}
 					<tr>
-						<td>{{ material.nazwa }}</td>
+						<td>
+							{{ material.nazwa }}
+							<a name="{{ 'material'~material.id }}"></a>
+						</td>
 						<td>{{ material.kod }}</td>
 						<td>{{ material.grupamaterialow }}</td>
 						<td>{{ material.jednostkamiary }}</td>
 						<td><a href="{{ path('material_material_edit', {'id' : material.id}) }}" class="btn btn-primary">Edytuj</a></td>
+						{% if ( delete_id is defined and delete_id == material.id) %}
+							<td>
+								<a href="{{ path('material_material_delete', {'id' : material.id, 'confirm': true}) }}"
+									 class="btn btn-danger"
+								>
+									Potwierdzam usunięcie
+								</a>
+							</td>
+						{% else %}
+							<td>
+								<a href="{{ path('material_material_delete', {'id' : material.id}) }}#{{ 'material'~material.id }}"
+									 class="btn btn-primary"
+								>
+									Usuń jednostkę
+								</a>
+							</td>
+						{% endif %}
+
 					</tr>
 			{% endfor %}
 		</tbody>

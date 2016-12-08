@@ -44,7 +44,7 @@ class Material{
 	protected $grupa_materialow;
 
 	public function __toString() {
-		return $this->getNazwa().' ['.$this->getKod().']';
+		return $this->getNazwa().' [skrót :  '.$this->getKod().']';
 	}
 	/**
 	 *

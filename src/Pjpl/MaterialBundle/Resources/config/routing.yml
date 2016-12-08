@@ -14,6 +14,11 @@ material_grupa_list:
 material_grupa_edit:
     path:     grupa/edit/{id}
     defaults: { _controller: PjplMaterialBundle:Grupa:edit }
+    requirements: { id: "\d+"}
+material_grupa_delete:
+    path:     grupa/delete/{id}/{confirm}
+    defaults: { _controller: PjplMaterialBundle:Grupa:delete, confirm : false }
+    requirements: { id: "\d+"}
 material_grupa_change_parent:
     path:     grupa/change-parent/{id}
     defaults: { _controller: PjplMaterialBundle:Grupa:changeParent }
@@ -30,6 +35,10 @@ material_jm_list:
 material_jm_edit:
     path:     jm/edit/{id}
     defaults: { _controller: PjplMaterialBundle:JednostkaMiary:edit }
+material_jm_delete:
+    path:     jm/delete/{id}/{confirm}
+    defaults: { _controller: PjplMaterialBundle:JednostkaMiary:delete, confirm : false }
+    requirements: { id: "\d+"}
 
 material_material:
     path:     material/
@@ -43,3 +52,7 @@ material_material_list:
 material_material_edit:
     path:     material/edit/{id}
     defaults: { _controller: PjplMaterialBundle:Material:edit }
+material_material_delete:
+    path:     material/delete/{id}/{confirm}
+    defaults: { _controller: PjplMaterialBundle:Material:delete, confirm : false }
+    requirements: { id: "\d+"}
